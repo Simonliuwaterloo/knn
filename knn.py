@@ -14,7 +14,7 @@ def data_generate():
 
 
 def load_data(file_name):
-    #file_name is the name of your dataset, must be in plain text form, data separated by whitespace
+    #file_name is the name of your dataset, must be in plain text form, data separated by comma
     data_init = pd.read_csv(file_name)
     #read data, store them in data_init in dataframe form
     array_init = np.array(data_init)
@@ -74,7 +74,7 @@ def classify(input, location, classes, k):
     else:
         print('B')
 
-
+#an instance of using this module
 a,b = load_data("test_data.txt")
 classify([1,2],a,b,3)
 plot_data(a,b)
