@@ -32,14 +32,17 @@ def load_data(file_name):
     #fill list with classes
     return location, classes
 
-def plot_data(location, classes):
+def plot_data(location, classes, input):
     #plot the x and y coordinates(location in a cartesian coordinate system) of data
     x=list()
     y=list()
+    input_x = input[0]
+    input_y = input[1]
     for n in range(location.shape[0]):
         x.append(location[n,0])
         y.append(location[n,1])
-    plt.scatter(x,y)
+    plt.scatter(x, y)
+    plt.scatter(input_x, input_y)
     plt.show()
     return 0
 
@@ -75,6 +78,9 @@ def classify(input, location, classes, k):
         print('B')
 
 #an instance of using this module
+'''
+input = [1, 2]
 a,b = load_data("test_data.txt")
-classify([1,2],a,b,3)
-plot_data(a,b)
+classify(input, a, b, 3)
+plot_data(a, b, input)
+'''
