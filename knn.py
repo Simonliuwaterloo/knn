@@ -4,6 +4,7 @@ import pandas as pd
 from math import sqrt
 import matplotlib.pyplot as plt
 import tkinter
+from matplotlib.lines import Line2D
 #matplotlib doesn't work without tkinter
 
 def data_generate():
@@ -34,15 +35,22 @@ def load_data(file_name):
 
 def plot_data(location, classes, input):
     #plot the x and y coordinates(location in a cartesian coordinate system) of data
+    print(location, classes)
     x=list()
     y=list()
     input_x = input[0]
     input_y = input[1]
+    relation = {'A':'black', 'B':'blue'}
     for n in range(location.shape[0]):
-        x.append(location[n,0])
-        y.append(location[n,1])
-    plt.scatter(x, y)
-    plt.scatter(input_x, input_y)
+        plt.scatter(location[n,0], location[n,1], color= relation[classes[n]])
+
+    plt.scatter(input_x, input_y,color = 'red', label = 'input')
+    custom_lines = [Line2D([0], [0], color='black', lw=8),
+                    Line2D([0], [0], color='blue', lw=8),
+                    Line2D([0], [0], color='red', lw=8)]
+
+    #fig, ax = plt.subplots()
+    plt.legend(custom_lines, ['A', 'B', 'input'])
     plt.show()
     return 0
 
@@ -78,9 +86,8 @@ def classify(input, location, classes, k):
         print('B')
 
 #an instance of using this module
-'''
+
 input = [1, 2]
 a,b = load_data("test_data.txt")
 classify(input, a, b, 3)
 plot_data(a, b, input)
-'''
